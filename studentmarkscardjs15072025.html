@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Marks Table 15-07-2025 </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: antiquewhite;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: justify;
+
+        }
+
+        th,
+        td {
+            border: 1px solid #333;
+            padding: 10px;
+        }
+
+        th {
+            background-color: chocolate;
+            color: white;
+        }
+
+
+        tr:hover {
+            background-color: burlywood;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: green;
+            color: white;
+            border: double;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: brown;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 style="background-color:darkgreen; color:beige; height: 31px; ">Student Marks Table -  2K 25 StemUp!!!!!!</h2>
+
+    <table style="background-color:darkgoldenrod;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>English</th>
+                <th>Kannada</th>
+                <th>Hindi</th>
+                <th>Social Science</th>
+                <th>Biology</th>
+                <th>Chemistry</th>
+                <th>Total</th>
+                <th>Instructions: Click on the below button to get your final 'Total' result </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="row1">
+                <td>Shrayanth S</td>
+                <td>78</td>
+                <td>80</td>
+                <td>89</td>
+                <td>77</td>
+                <td>75</td>
+                <td>85</td>
+                <td id="total1">Note: Click on the Submit button to get your Total Marks</td>
+                <td><button onclick="calculateTotal('total1', 78, 80, 89, 77, 75, 85)">Submit</button></td>
+            </tr>
+            <tr id="row2">
+                <td>Nikhil</td>
+                <td>88</td>
+                <td>90</td>
+                <td>85</td>
+                <td>80</td>
+                <td>78</td>
+                <td>88</td>
+                <td id="total2">Note: Click on the Submit button to get your Total Marks</td>
+                <td><button onclick="calculateTotal('total2', 88, 90, 85, 80, 78, 88)">Submit</button></td>
+            </tr>
+            <tr id="row3">
+                <td>Chandrakanth</td>
+                <td>65</td>
+                <td>70</td>
+                <td>60</td>
+                <td>75</td>
+                <td>80</td>
+                <td>68</td>
+                <td id="total3">Note: Click on the Submit button to get your Total Marks</td>
+                <td><button onclick="calculateTotal('total3', 65, 70, 60, 75, 80, 68)">Submit</button></td>
+            </tr>
+            <tr id="row4">
+                <td>Vishnu Priya</td>
+                <td>90</td>
+                <td>85</td>
+                <td>88</td>
+                <td>92</td>
+                <td>86</td>
+                <td>84</td>
+                <td id="total4">Note: Click on the Submit button to get your Total Marks</td>
+                <td><button onclick="calculateTotal('total4', 90, 85, 88, 92, 86, 84)">Submit</button></td>
+            </tr>
+            <tr id="row5">
+                <td>Indira Priyadharshini</td>
+                <td>72</td>
+                <td>68</td>
+                <td>74</td>
+                <td>70</td>
+                <td>69</td>
+                <td>76</td>
+                <td id="total5">Note: Click on the Submit button to get your Total Marks</td>
+                <td><button onclick="calculateTotal('total5', 72, 68, 74, 70, 69, 76)">Submit</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function calculateTotal(cellId, m1, m2, m3, m4, m5, m6) {
+            let total = m1 + m2 + m3 + m4 + m5 + m6;
+            document.getElementById(cellId).innerText = total;
+        }
+    </script>
+
+</body>
+
+</html>
