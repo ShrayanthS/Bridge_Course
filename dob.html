@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Age Calculator and Next B'day Predictor</title>
+  <link rel="icon" type="image/x-icon" href="https://ocakes.in/storage/app/public/images/item/item-644a3ceba52b4.jpg">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: bisque;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .container {
+      background-color:burlywood;
+      padding: 30px;
+      border-radius: 35px;
+      box-shadow: 0 0 60px black;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input[type="date"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+      margin-bottom: 15px;
+      background-color: chocolate;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 5px;
+      cursor: pointer;
+      background-color: blueviolet;
+    }
+
+    .invalid {
+      border: 2px solid red;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Age Calculator <br> <br>Please Enter Your DOB to calculate your age and get days remaining for your next bday</h2>
+    <input type="date" id="dob" />
+    <div>
+      <button onclick="handleCalculate()">Calculate Age</button>
+      <button onclick="handleClear()">Clear</button>
+    </div>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateAge(dob) {
+      const birthDate = new Date(dob);
+      const today = new Date();
+
+      if (birthDate > today) return null;
+
+      let years = today.getFullYear() - birthDate.getFullYear();
+      let months = today.getMonth() - birthDate.getMonth();
+      let days = today.getDate() - birthDate.getDate();
+
+      if (days < 0) {
+        months--;
+        days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+      }
+
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      return { years, months, days };
+    }
+
+    function displayResult(age) {
+      const resultDiv = document.getElementById('result');
+      if (!age) {
+        resultDiv.innerHTML = "<span style='color:red;'>Please enter a valid date of birth (not future).</span>";
+        return;
+      }
+
+      resultDiv.innerHTML = `
+        <p><strong>Your Age:</strong></p>
+        <p>${age.years} Years, ${age.months} Months, ${age.days} Days</p>
+      `;
+
+      const dobField = document.getElementById("dob");
+      const nextBirthday = getNextBirthday(dobField.value);
+      resultDiv.innerHTML += `<p> Hurray!!!!!!!!!<br> Days until next birthday are: ${nextBirthday} days <br><br> Happy Shopping for your B'day</p>`;
+    }
+
+    function getNextBirthday(dob) {
+      const birthDate = new Date(dob);
+      const today = new Date();
+      let nextBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+
+      if (nextBirthday < today) {
+        nextBirthday.setFullYear(today.getFullYear() + 1);
+      }
+
+      const diff = nextBirthday - today;
+      return Math.ceil(diff / (1000 * 60 * 60 * 24));
+    }
+
+    function handleCalculate() {
+      const dobField = document.getElementById("dob");
+      const dobValue = dobField.value;
+      const result = calculateAge(dobValue);
+
+      if (!dobValue || result === null) {
+        dobField.classList.add("invalid");
+        displayResult(null);
+      } else {
+        dobField.classList.remove("invalid");
+        displayResult(result);
+      }
+    }
+
+    function handleClear() {
+      document.getElementById("dob").value = "";
+      document.getElementById("result").innerHTML = "";
+      document.getElementById("dob").classList.remove("invalid");
+    }
+  </script>
+</body>
+</html>
