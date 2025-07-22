@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>String Manipulation</title>
+</head>
+<body>
+  <h2>String Manipulation with JavaScript Methods for - " Hello JavaScript World "</h2>
+  
+  <input type="text" id="userInput" placeholder="Enter a string" size="78">
+  <button onclick="manipulateString()">Run</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    function manipulateString() {
+      let input = document.getElementById("userInput").value;
+
+      // Here we trim extra spaces 
+      let trimmed = input.trim();
+
+      
+      let upper = trimmed.toUpperCase();
+      let lower = trimmed.toLowerCase();
+      let length = trimmed.length;
+      let firstFive = trimmed.substring(0, 5);
+      let replaced = trimmed.replace(/ /g, "-");
+      let includesJS = trimmed.includes("JavaScript");
+      let capitalized = trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
+      let reversed = trimmed.split("").reverse().join("");
+
+     
+      let result = `
+
+Uppercase: ${upper}
+
+
+Lowercase: ${lower}
+
+
+Length: ${length}
+
+
+First 5 characters: ${firstFive}
+
+
+Replaced: ${replaced}
+
+
+Includes "JavaScript": ${includesJS}
+
+
+Trimmed: ${trimmed}
+
+
+Capitalized: ${capitalized}
+
+
+Reversed: ${reversed}
+
+      `;
+
+      document.getElementById("output").textContent = result.trim();
+    }
+  </script>
+</body>
+</html>
